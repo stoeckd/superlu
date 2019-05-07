@@ -1,4 +1,5 @@
-set(headers
+
+set(headers 
     supermatrix.h
     slu_Cnames.h
     slu_dcomplex.h
@@ -24,8 +25,6 @@ set(sources
   mc64ad.c
   qselect.c
   input_error.c
-  dmach.c
-  smach.c
 )
 set_source_files_properties(superlu_timer.c PROPERTIES COMPILE_FLAGS -O0)
 
@@ -57,7 +56,6 @@ if(enable_single)
     sreadhb.c
     sreadrb.c
     sreadtriple.c
-    sreadMM.c
     scolumn_dfs.c
     scolumn_bmod.c
     spivotL.c
@@ -109,7 +107,6 @@ if(enable_double)
     dreadhb.c
     dreadrb.c
     dreadtriple.c
-    dreadMM.c
     dcolumn_dfs.c
     dcolumn_bmod.c
     dpivotL.c
@@ -161,7 +158,6 @@ if(enable_complex)
     creadhb.c
     creadrb.c
     creadtriple.c
-    creadMM.c
     ccolumn_dfs.c
     ccolumn_bmod.c
     cpivotL.c
@@ -212,7 +208,6 @@ if(enable_complex16)
     zreadhb.c
     zreadrb.c
     zreadtriple.c
-    zreadMM.c
     zcolumn_dfs.c
     zcolumn_bmod.c
     zpivotL.c
@@ -234,13 +229,12 @@ if(enable_complex16)
 endif()
 
 add_library(superlu ${sources} ${HEADERS})
-target_link_libraries(superlu ${BLAS_LIB} m)
 
+target_link_libraries(superlu ${BLAS_LIB} m)
 set_target_properties(superlu PROPERTIES
   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
   )
 
-# Define GNU standard installation directories
 include(GNUInstallDirs)
 
 install(TARGETS superlu

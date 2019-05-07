@@ -290,9 +290,9 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     for (k = 0; k < n; k++) swap[k] = iperm_c[k];
     iswap = (int *)intMalloc(n);
     for (k = 0; k < n; k++) iswap[k] = perm_c[k];
-    amax = (float *) SUPERLU_MALLOC(panel_size * sizeof(float));
+    amax = (float *) floatMalloc(panel_size);
     if (drop_rule & DROP_SECONDARY)
-	swork2 = SUPERLU_MALLOC(n * sizeof(float));
+	swork2 = (float *)floatMalloc(n);
     else
 	swork2 = NULL;
 

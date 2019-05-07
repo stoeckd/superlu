@@ -11,7 +11,6 @@ at the top-level directory.
 #include <float.h>
 #include <math.h>
 #include <stdio.h>
-#include <string.h>
 
 double dmach(char *cmach)
 {

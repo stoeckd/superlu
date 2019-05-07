@@ -21,7 +21,6 @@ at the top-level directory.
  * Purpose:             MAIN test program
  */
 #include <string.h>
-#include <unistd.h>
 #include "slu_zdefs.h"
 
 #define NTESTS    5      /* Number of test types */
@@ -37,7 +36,7 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp);
 
-int main(int argc, char *argv[])
+main(int argc, char *argv[])
 {
 /* 
  * Purpose

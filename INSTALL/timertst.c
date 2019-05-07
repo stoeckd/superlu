@@ -6,8 +6,6 @@ void mysub(int n, double *x, double *y)
     return;
 }
 
-volatile double _dummy;
-
 int main()
 {
     /* Parameters */    
@@ -34,15 +32,14 @@ int main()
       for (j = 0; j < iters; ++j) {
 	for (i = 0; i < NMAX; ++i) y[i] += alpha * x[i];
 	alpha = -alpha;
-	_dummy = y[j%NMAX];
       }
       t2 = SuperLU_timer_();
       tnotim = t2 - t1;
       if ( tnotim > 0. ){
 	float ops = 2.0 * iters * NMAX * 1e-9;
-        printf("Time for %d DAXPYs = %10.6g seconds\n",
+        printf("Time for %d DAXPYs = %10.3g seconds\n",
 	       iters, tnotim);
-	printf("DAXPY performance rate = %10.6g Gflops\n", ops/tnotim);
+	printf("DAXPY performance rate = %10.3g Gflops\n", ops/tnotim);
       } else {
         /* this makes sure we dont keep trying forever */
         if ( iters > 100000000 ) {

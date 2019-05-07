@@ -9,3 +9,6 @@
 /build/
 
 .dropbox.attr
+
+*.o
+*.a

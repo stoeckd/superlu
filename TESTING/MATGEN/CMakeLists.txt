@@ -1,24 +1,13 @@
 set(sources "")
-set(SCATGEN
+
+if(enable_single)
+  list(APPEND sources
     slatm1.c
     slaran.c
     slarnd.c
     slaruv.c
     slabad.c
     slarnv.c
-)
-set(DZATGEN
-    dlatm1.c
-    dlaran.c
-    dlarnd.c
-    dlaruv.c
-    dlabad.c
-    dlarnv.c
-)
-
-if(enable_single)
-  list(APPEND sources ${SCATGEN})
-  list(APPEND sources
     slatb4.c
     slaset.c
     slartg.c
@@ -38,8 +27,13 @@ if(enable_single)
 endif()
 
 if(enable_double)
-  list(APPEND sources ${DZATGEN})
   list(APPEND sources
+    dlatm1.c
+    dlaran.c
+    dlarnd.c
+    dlaruv.c
+    dlabad.c
+    dlarnv.c
     dlatb4.c
     dlaset.c
     dlartg.c
@@ -59,7 +53,6 @@ if(enable_double)
 endif()
 
 if(enable_complex)
-  list(APPEND sources ${SCATGEN})
   list(APPEND sources
     clatb4.c
     claset.c
@@ -77,16 +70,11 @@ if(enable_complex)
     clatm3.c
     claghe.c
     clarnd.c
-#    cdotc.c
-    r_lg10.c
-    r_sign.c
-    pow_dd.c
-    pow_ri.c
-)
+    cdotc.c
+  )
 endif()
 
 if(enable_complex16)
-  list(APPEND sources ${DZATGEN})
   list(APPEND sources
     zlatb4.c
     zlaset.c
@@ -104,13 +92,8 @@ if(enable_complex16)
     zlatm3.c
     zlaghe.c
     zlarnd.c
-#    zdotc.c
-    d_lg10.c
-    d_sign.c
-    pow_dd.c
-    pow_di.c
+    zdotc.c
   )
 endif()
 
 add_library(matgen ${sources})
-target_link_libraries(matgen superlu)

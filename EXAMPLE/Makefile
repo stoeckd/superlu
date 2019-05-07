@@ -1,5 +1,4 @@
 include ../make.inc
-INCLUDEDIR  = -I../SRC
 
 #######################################################################
 #  This makefile creates the example programs for the linear equation
@@ -32,6 +31,8 @@ INCLUDEDIR  = -I../SRC
 #       make single FRC=FRC
 #
 #######################################################################
+
+HEADER   = ../SRC
 
 SLINEXM		= slinsol.o
 SLINEXM1	= slinsol1.o
@@ -182,7 +183,7 @@ zitersol1: $(ZITSOL1) $(SUPERLULIB)
 	$(LOADER) $(LOADOPTS) $(ZITSOL1) $(LIBS) -lm -o $@
 
 .c.o:
-	$(CC) $(CFLAGS) $(CDEFS) $(INCLUDEDIR) -c $< $(VERBOSE)
+	$(CC) $(CFLAGS) $(CDEFS) -I$(HEADER) -c $< $(VERBOSE)
 
 .f.o:
 	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
