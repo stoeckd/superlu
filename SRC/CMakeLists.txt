@@ -88,6 +88,8 @@ if(enable_double)
     dlacon2.c
     dmach.c
     dgssv.c
+    dgssv_lufact.c
+    dgssv_lusolve.c
     dgssvx.c
     dsp_blas2.c
     dsp_blas3.c

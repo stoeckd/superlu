@@ -100,7 +100,25 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 ######################################################################
 #
 #--------------------- BLAS ---------------------
-if(NOT enable_blaslib)
+find_library(
+  BLAS_LIBRARIES
+  NAMES libopenblas.a
+  HINTS "${PACKAGES}/OpenBLAS-0.2.20"
+  PATHS "${PACKAGES}/OpenBLAS-0.2.20"
+  )
+
+message (STATUS "BLAS_LIB: [${BLAS_LIBRARIES}]")
+
+if (BLAS_LIBRARIES)
+  set(BLAS_FOUND TRUE)
+endif()
+
+if (BLAS_FOUND)
+  set(TPL_BLAS_LIBRARIES "${BLAS_LIBRARIES}" CACHE FILEPATH
+    "Set from FindBLAS.cmake BLAS_LIBRARIES." FORCE)
+endif()
+
+#[[if(NOT enable_blaslib)
   if (TPL_BLAS_LIBRARIES)
     set(BLAS_FOUND TRUE)
   else()
@@ -111,6 +129,7 @@ if(NOT enable_blaslib)
     endif()
   endif()
 endif()
+#]]
 
 if(BLAS_FOUND)
   message("-- Using TPL_BLAS_LIBRARIES='${TPL_BLAS_LIBRARIES}'")
